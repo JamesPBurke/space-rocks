@@ -29,7 +29,10 @@ let shipsprite: Sprite = null
 let shipangle = 0
 let ships: Image[] = []
 let oneship: Image = null
+let vely = 0
+let velx = 0
 let coord2 = 0
+tiles.setTilemap(tilemap`level1`)
 for (let index = 0; index <= 7; index++) {
     oneship = img`
         . . . . . . . . . . . . . . . . 
@@ -57,3 +60,17 @@ for (let index = 0; index <= 7; index++) {
 }
 shipangle = 0
 shipsprite = sprites.create(ships[shipangle], SpriteKind.Player)
+scene.cameraFollowSprite(shipsprite)
+
+
+game.onUpdate(function () {
+    for (let value of [shipsprite]) {
+    	if (value.right > 235) {
+            value.right = 0
+        }
+    }
+})
+forever(function () {
+    console.log("shipsprite.vx = " + shipsprite.vx)
+    pause(500)
+})
